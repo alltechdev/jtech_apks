@@ -1,4 +1,5 @@
 downloads/
 *.apk
 *.md
+*.backup
 .DS_Store
