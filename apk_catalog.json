@@ -35,22 +35,6 @@
       "downloaded_at": "2025-11-18T15:58:47.576114"
     },
     {
-      "url": "https://forums.jtechforums.org#p-29185-download-more-ramhttpsdownloadmoreramcom-1",
-      "filename": "download_a6523ff7.apk",
-      "topic_id": 4581,
-      "topic_title": "RevealOS revealed: The story behind the filter hacking site",
-      "post_id": 29185,
-      "post_number": 7,
-      "author": "Dev-in-the-BM_2.0",
-      "created_at": "2025-09-26T04:56:40.577Z",
-      "category": "General",
-      "source": "text_content",
-      "local_path": "downloads/RevealOS-revealed-The-story-behind-the-f_Dev-in-the-BM_2.0_download_a6523ff7.apk",
-      "file_size": 58547,
-      "md5": "b3f2d29879e9ed4d5bfa6db0aae20904",
-      "downloaded_at": "2025-11-18T15:59:49.205536"
-    },
-    {
       "url": "https://forums.jtechforums.org/uploads/short-url/1emYM0ddldaCIBiqEn2HZDm2RDa.apk",
       "filename": "1emYM0ddldaCIBiqEn2HZDm2RDa.apk",
       "topic_id": 487,
@@ -1271,22 +1255,6 @@
       "downloaded_at": "2025-11-18T16:15:23.228781"
     },
     {
-      "url": "https://forums.jtechforums.org#p-32586-download-and-testhttpsgithubcomalltechdevzemerreleasesdownloadpre-release5app-arm64-release-signedapk-1",
-      "filename": "download_c942e2f0.apk",
-      "topic_id": 4845,
-      "topic_title": "Filtered YouTube Music Client",
-      "post_id": 32586,
-      "post_number": 48,
-      "author": "ars18",
-      "created_at": "2025-10-31T18:21:02.258Z",
-      "category": "Android",
-      "source": "text_content",
-      "local_path": "downloads/Filtered-YouTube-Music-Client_ars18_download_c942e2f0.apk",
-      "file_size": 58547,
-      "md5": "05bf4adf76cb4a0de39ef6b318a848d8",
-      "downloaded_at": "2025-11-18T16:15:48.558619"
-    },
-    {
       "url": "https://forums.jtechforums.org/uploads/short-url/404cFQjfLbq41GPRozrjIvbBgmb.apk",
       "filename": "404cFQjfLbq41GPRozrjIvbBgmb.apk",
       "topic_id": 4845,
@@ -1685,22 +1653,6 @@
       "file_size": 20949,
       "md5": "ccc669b5885d137ccbb69b2c86d86cfa",
       "downloaded_at": "2025-11-18T16:19:52.278240"
-    },
-    {
-      "url": "https://forums.jtechforums.org#p-27632-download-the-apphttpsdrivegooglecomfiled1ksko0gqrmvtdce2gtsb1pyhneudwz7d5viewuspsharing-drive-2",
-      "filename": "download_efd76b32.apk",
-      "topic_id": 4374,
-      "topic_title": "Ultimate solution! install apps directly onto Sonim phones!",
-      "post_id": 27632,
-      "post_number": 1,
-      "author": "flipphoneguy",
-      "created_at": "2025-09-12T02:55:05.549Z",
-      "category": "Android",
-      "source": "text_content",
-      "local_path": "downloads/Ultimate-solution!-install-apps-directly_flipphoneguy_download_efd76b32.apk",
-      "file_size": 58547,
-      "md5": "e658d430fb89fa1fa9acc83f002b72fb",
-      "downloaded_at": "2025-11-18T16:19:56.019275"
     },
     {
       "url": "https://forums.jtechforums.org/uploads/short-url/3YpcNUSd8X3ePPicKODFsnZGmXf.apk",
@@ -2695,22 +2647,6 @@
       "downloaded_at": "2025-11-18T16:40:42.746288"
     },
     {
-      "url": "https://forums.jtechforums.org#p-27433-download-from-here-google-drivehttpsdrivegooglecomfiled1fp_0hf4xyaxa3fhnzaj7bgz5qgzaulqxviewuspsharing-2",
-      "filename": "download_a174cd8b.apk",
-      "topic_id": 4350,
-      "topic_title": "Snake game - python",
-      "post_id": 27433,
-      "post_number": 1,
-      "author": "flipphoneguy",
-      "created_at": "2025-09-10T21:39:54.878Z",
-      "category": "Tools, Software, & Resources",
-      "source": "text_content",
-      "local_path": "downloads/Snake-game---python_flipphoneguy_download_a174cd8b.apk",
-      "file_size": 58547,
-      "md5": "81f9a35786955f3a9f1cc3c067f7e831",
-      "downloaded_at": "2025-11-18T16:40:50.126263"
-    },
-    {
       "url": "https://forums.jtechforums.org/uploads/short-url/475guXBrdOHILsw7kIj8AJq6amY.apk",
       "filename": "475guXBrdOHILsw7kIj8AJq6amY.apk",
       "topic_id": 254,
@@ -2760,14 +2696,14 @@
     "topics_scanned": 1132,
     "posts_scanned": 22483,
     "apks_found": 279,
-    "downloads_successful": 177,
+    "downloads_successful": 173,
     "downloads_failed": 0,
     "api_calls": 1972,
     "errors": []
   },
-  "total_count": 177,
+  "total_count": 173,
   "download_results": {
-    "success": 177,
+    "success": 173,
     "already_downloaded": 0,
     "failed": 0
   }
