@@ -29,6 +29,66 @@
             padding: 40px 20px;
         }
 
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            header {
+                margin-left: 0;
+                margin-right: 0;
+                margin-bottom: 24px;
+            }
+
+            .stats {
+                padding-left: 0;
+                padding-right: 0;
+                flex-direction: column;
+            }
+
+            .search-bar {
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 0;
+                padding-right: 0;
+                margin-bottom: 24px;
+            }
+
+            .search-wrapper {
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            #searchInput {
+                border-radius: 8px;
+            }
+
+            .apk-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 0;
+            }
+
+            .apk-card {
+                margin-left: 0;
+                margin-right: 0;
+                border-radius: 12px;
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            .description {
+                line-height: 1.6;
+                word-break: break-word;
+                hyphens: auto;
+            }
+        }
+
         header {
             margin-bottom: 40px;
             text-align: center;
@@ -73,11 +133,14 @@
 
         .search-bar {
             margin-bottom: 32px;
+            display: flex;
+            justify-content: center;
         }
 
         .search-wrapper {
             position: relative;
             max-width: 600px;
+            width: 100%;
         }
 
         .search-icon {
@@ -164,6 +227,26 @@
             margin-bottom: 16px;
             word-break: break-all;
             font-family: 'Courier New', monospace;
+        }
+
+        .description {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #0f1729;
+            border-left: 3px solid #3b82f6;
+            border-radius: 4px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: normal;
+            hyphens: auto;
+            max-width: 100%;
+        }
+
+        .description:empty {
+            display: none;
         }
 
         .meta-info {
@@ -301,23 +384,6 @@
             color: #475569;
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .apk-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats {
-                flex-direction: column;
-            }
-
-            .search-wrapper {
-                max-width: 100%;
-            }
-        }
     </style>
 </head>
 <body>
@@ -391,15 +457,60 @@
             }
         }
 
+        function cleanDescription(text) {
+            if (!text) return '';
+
+            // Remove all markdown/BBCode artifacts
+            let cleaned = text
+                // Remove quote tag syntax but keep quoted content for now
+                .replace(/\[quote="[^"]*"[^\]]*\]/g, '')
+                .replace(/\[quote[^\]]*\]/g, '')
+                .replace(/\[\/quote\]/g, '')
+                // Remove other formatting
+                .replace(/\[center\]/g, '')
+                .replace(/\[\/center\]/g, '')
+                .replace(/\[b\]/g, '')
+                .replace(/\[\/b\]/g, '')
+                .replace(/\[size=[^\]]*\]/g, '')
+                .replace(/\[\/size\]/g, '')
+                .replace(/\[url=[^\]]+\]/g, '')
+                .replace(/\[\/url\]/g, '')
+                // Remove image/attachment with sizes
+                .replace(/\[[^\]]*\.apk[^\]]*\]\s*\([0-9.]+\s*[KMG]B\)/gi, '')
+                .replace(/\[[^\]]*\.apk[^\]]*\]/gi, '')
+                .replace(/\([^\)]*\.apk[^\)]*\)/gi, '')
+                // Remove file sizes
+                .replace(/\([0-9.]+\s*[KMG]B\)/gi, '')
+                // Remove image/attachment markers
+                .replace(/!\w+\|[\d]+x[\d]+/g, '')
+                .replace(/\|attachment[^\s\)]*/g, '')
+                .replace(/upload:\/\/[^\s\)]+/g, '')
+                // Clean up mentions
+                .replace(/@\w+/g, '')
+                // Remove emoji codes like :slightsmile: :smile: etc
+                .replace(/:\w+:/g, '')
+                // Remove empty brackets/parens
+                .replace(/\[\s*\]/g, '')
+                .replace(/\(\s*\)/g, '')
+                // Clean extra whitespace
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            // No truncation - show full descriptions
+            return cleaned;
+        }
+
         function createApkCard(apk) {
             const slug = createSlug(apk.topic_title);
             const forumLink = `https://forums.jtechforums.org/t/${slug}/${apk.topic_id}/${apk.post_number}`;
             const apkName = extractApkName(apk.local_path, apk.filename);
+            const description = cleanDescription(apk.description);
 
             return `
                 <div class="apk-card">
                     <div class="topic-label">Topic</div>
                     <div class="topic-title">${escapeHtml(apk.topic_title)}</div>
+                    ${description ? `<div class="description">${escapeHtml(description)}</div>` : ''}
                     <div class="apk-name">${escapeHtml(apkName)}</div>
                     <div class="meta-info">
                         <div class="meta-item">
@@ -459,6 +570,7 @@
                 apk.filename.toLowerCase().includes(term) ||
                 (apk.local_path && apk.local_path.toLowerCase().includes(term)) ||
                 apk.author.toLowerCase().includes(term) ||
+                (apk.description && apk.description.toLowerCase().includes(term)) ||
                 apk.topic_id.toString().includes(term) ||
                 apk.post_number.toString().includes(term)
             );
@@ -474,8 +586,10 @@
                 allApks = data.apk_files;
 
                 const statsDiv = document.getElementById('stats');
+                const totalApks = data.apk_files.length;
+
                 statsDiv.innerHTML = `
-                    <div class="stat"><strong>${data.download_results.success}</strong> apks</div>
+                    <div class="stat"><strong>${totalApks}</strong> apks</div>
                 `;
 
                 document.getElementById('loading').style.display = 'none';
