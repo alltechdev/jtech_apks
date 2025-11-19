@@ -3,3 +3,4 @@ downloads/
 *.md
 *.backup
 .DS_Store
+add_descriptions.py
